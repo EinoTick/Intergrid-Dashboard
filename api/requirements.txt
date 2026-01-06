@@ -1,0 +1,11 @@
+# Core FastAPI framework
+fastapi>=0.104.0,<0.115.0
+
+# ASGI server with standard extras (includes uvloop for better performance)
+uvicorn[standard]>=0.24.0,<0.32.0
+
+# Data validation and settings management
+pydantic>=2.0.0,<3.0.0
+
+# Note: This API supports updating asset information via PATCH /assets/{asset_id}
+# Updates are stored in memory and persist for the lifetime of the API instance
