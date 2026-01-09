@@ -15,10 +15,21 @@ function AssetMeta({ asset }: { asset: Asset }) {
   )
 }
 
+interface HeaterStorage {
+    state_of_charge_percent: number;
+    stored_energy_mwh: number;
+    capacity_mwh: number;
+}
+
 export default function AssetCard({ asset }: { asset: Asset }) {
   const [editing, setEditing] = useState(false)
   const { data: current } = useHeatProductionCurrent(asset.id)
-  const { data: storage } = useStorageState(asset.id)
+  // useStorageState only accepts heatStorage types
+  let storage: HeaterStorage | undefined = undefined;
+  if (asset.type === "heat_storage") {
+    const { data } = useStorageState(asset.id);
+    storage = data;
+  }
 
   return (
     <div className="card">
