@@ -121,8 +121,12 @@ function StorageCharts({ asset, startISO, endISO }: { asset: Asset, startISO: st
   const { data: flow } = useStorageChargeDischarge(asset.id, startISO, endISO, false)
   const { data: state } = useStorageStateHistorical(asset.id, startISO, endISO)
 
-  const flowData = flow?.data_points?.map(p => ({ timestamp: p.timestamp, charge: p.charge, discharge: p.discharge, net: p.net_flow })) ?? []
-  const stateData = state?.data_points?.map(p => ({ timestamp: p.timestamp, soc: p.state_of_charge_percent, energy: p.stored_energy_mwh })) ?? []
+  const flowData = flow?.data_points?.map(p =>
+    ({ timestamp: p.timestamp, charge: p.charge, discharge: p.discharge, net: p.net_flow })
+  ) ?? []
+  const stateData = state?.data_points?.map(p =>
+    ({ timestamp: p.timestamp, soc: p.state_of_charge_percent, energy: p.stored_energy_mwh })
+  ) ?? []
 
   return (
     <div style={{ marginTop: 8 }}>
@@ -148,18 +152,27 @@ function NetworkCharts({ asset, startISO, endISO }: { asset: Asset, startISO: st
   const { data: cons } = useHeatConsumption(asset.id, startISO, endISO)
   const { data: forecast } = useHeatConsumptionForecast(asset.id)
 
-  const consData = cons?.consumption?.map(p => ({ timestamp: p.timestamp, value: p.value })) ?? []
-  const forecastData = forecast?.forecast?.map(p => ({ timestamp: p.timestamp, value: p.value })) ?? []
+  const consData = cons?.consumption?.map(p =>
+    ({ timestamp: p.timestamp, value: p.value })) ?? []
+  const forecastData = forecast?.forecast?.map(p =>
+    ({ timestamp: p.timestamp, value: p.value })) ?? []
 
   return (
     <div className="row">
       <div className="col">
         <div className="small" style={{ marginBottom: 6 }}>Actual consumption (last 24h)</div>
-        <AreaSeriesChart data={consData} series={[{ name: 'Consumption', dataKey: 'value', color: '#ef4444' }]} yUnit=" MW" />
+        <AreaSeriesChart
+          data={consData}
+          series={[{ name: 'Consumption', dataKey: 'value', color: '#ef4444' }]} yUnit=" MW"
+        />
       </div>
       <div className="col">
         <div className="small" style={{ marginBottom: 6 }}>Forecast (next 5 days)</div>
-        <LineSeriesChart data={forecastData} series={[{ name: 'Forecast', dataKey: 'value', color: '#60a5fa' }]} yUnit=" MW" />
+        <LineSeriesChart
+          data={forecastData}
+          series={[{ name: 'Forecast', dataKey: 'value', color: '#60a5fa' }]}
+          yUnit=" MW"
+        />
       </div>
     </div>
   )
