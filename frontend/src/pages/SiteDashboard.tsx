@@ -87,15 +87,20 @@ export default function SiteDashboard() {
 }
 
 function ProductionCharts({ asset, startISO, endISO }: { asset: Asset, startISO: string, endISO: string }) {
-  const { data: hist } = useHeatProductionHistorical(asset.id, startISO, endISO)
+  const { data: history } = useHeatProductionHistorical(asset.id, startISO, endISO)
   const { data: plan } = useHeatProductionPlanned(asset.id, startISO, endISO)
 
+  //-- Refresh the component state only when history or plan data changes
   const data = useMemo(() => {
     const map = new Map<string, any>()
-    hist?.data_points.forEach(p => map.set(p.timestamp, { timestamp: p.timestamp, actual: p.value }))
-    plan?.data_points.forEach(p => map.set(p.timestamp, { ...(map.get(p.timestamp) || { timestamp: p.timestamp }), planned: p.value }))
+    history?.data_points.forEach(p =>
+      map.set(p.timestamp, { timestamp: p.timestamp, actual: p.value })
+    )
+    plan?.data_points.forEach(p =>
+      map.set(p.timestamp, { ...(map.get(p.timestamp) || { timestamp: p.timestamp }), planned: p.value })
+    )
     return Array.from(map.values()).sort((a, b) => a.timestamp.localeCompare(b.timestamp))
-  }, [hist, plan])
+  }, [history, plan])
 
   return (
     <div style={{ marginTop: 8 }}>
