@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa'
 import { useSites, useSiteDetail } from '@api/hooks'
 
 export default function NavigationBar() {
@@ -14,6 +15,7 @@ export default function NavigationBar() {
   const { data: siteDetail } = useSiteDetail(siteId)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
   const [isExpanded, setIsExpanded] = useState(!isMobile)
+  const [isLoggedIn, setIsLoggedIn] = useState(true) // Default to logged in
 
   useEffect(() => {
     const handleResize = () => {
@@ -139,13 +141,24 @@ export default function NavigationBar() {
           {/* Spacer to push login/logout to bottom */}
           <div style={{ flex: 1 }} />
 
-          {/* Login/Logout (visual only) */}
+          {/* Login/Logout toggle (visual only) */}
           <div className="nav-section nav-footer">
-            <button className="nav-link" style={{ width: '100%' }} disabled>
-              Login
-            </button>
-            <button className="nav-link" style={{ width: '100%' }} disabled>
-              Logout
+            <button 
+              className="nav-link" 
+              style={{ width: '100%', display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}
+              onClick={() => setIsLoggedIn(!isLoggedIn)}
+            >
+              {isLoggedIn ? (
+                <>
+                  <FaSignOutAlt />
+                  Logout
+                </>
+              ) : (
+                <>
+                  <FaSignInAlt />
+                  Login
+                </>
+              )}
             </button>
           </div>
         </div>
