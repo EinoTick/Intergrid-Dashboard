@@ -103,3 +103,119 @@ body {
 .recharts-default-tooltip {
     background-color: var(--bg) !important;
 }
+
+/* Navigation Bar Styles */
+.nav-bar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 280px;
+    background: var(--panel);
+    border-right: 1px solid #1f2937;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+}
+
+.nav-bar.collapsed {
+    transform: translateX(-100%);
+}
+
+.nav-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 24px 16px;
+    gap: 24px;
+}
+
+.nav-header {
+    padding-bottom: 16px;
+    border-bottom: 1px solid #1f2937;
+}
+
+.nav-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nav-link {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.nav-link:hover:not(:disabled) {
+    background: #1f2937;
+    border-color: #334155;
+}
+
+.nav-link:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.nav-footer {
+    padding-top: 16px;
+    border-top: 1px solid #1f2937;
+}
+
+.nav-toggle {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 1001;
+    background: var(--panel);
+    border: 1px solid #1f2937;
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    display: none;
+}
+
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Main content adjustment for nav bar */
+.main-content {
+    margin-left: 280px;
+    transition: margin-left 0.3s ease;
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+    .nav-toggle {
+        display: block;
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .nav-bar.expanded {
+        transform: translateX(0);
+    }
+}

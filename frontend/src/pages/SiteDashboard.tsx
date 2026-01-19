@@ -1,15 +1,13 @@
 import { useMemo, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { formatISO, subDays } from 'date-fns'
-import { useAssets, useElectricityPrices, useHeatConsumption, useHeatConsumptionForecast, useHeatProductionHistorical, useHeatProductionPlanned, useSiteDetail, useStorageChargeDischarge, useStorageStateHistorical, useSites } from '@api/hooks'
+import { useAssets, useElectricityPrices, useHeatConsumption, useHeatConsumptionForecast, useHeatProductionHistorical, useHeatProductionPlanned, useSiteDetail, useStorageChargeDischarge, useStorageStateHistorical } from '@api/hooks'
 import { Asset } from '@api/types'
 import AssetCard from '@components/AssetCard'
 import { AreaSeriesChart, BarSeriesChart, LineSeriesChart } from '@components/charts/TimeSeries'
 
 export default function SiteDashboard() {
   const { siteId } = useParams()
-  const navigate = useNavigate()
-  const { data: allSites } = useSites()
   const { data: siteDetail, isLoading, error } = useSiteDetail(siteId)
   const { data: assets } = useAssets(siteId)
 
@@ -32,29 +30,14 @@ export default function SiteDashboard() {
 
   return (
     <div className="container">
-      <div className="header">
-        <h2 style={{ margin: 0 }}>{siteDetail.site.name}</h2>
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <button className="button secondary" onClick={() => navigate('/')}>Back</button>
-          <select
-            className="select"
-            style={{ width: 280 }}
-            value={siteId}
-            onChange={(e) => navigate(`/site/${e.target.value}`)}
-          >
-            {allSites?.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
-          </select>
-        </div>
-      </div>
-
-      <div className="grid">
+      <div id="assets-grid" className="grid" style={{ scrollMarginTop: '24px' }}>
         {siteDetail.assets.map((a: Asset) => (
           <AssetCard key={a.id} asset={a} />
         ))}
       </div>
 
       {productionAssets.length > 0 && (
-        <div className="card" style={{ marginTop: 16 }}>
+        <div id="production-assets" className="card" style={{ marginTop: 16, scrollMarginTop: '24px' }}>
           <h3>Production assets: Actual vs Planned (last 24h)</h3>
           {productionAssets.map(asset => (
             <ProductionCharts key={asset.id} asset={asset} startISO={startISO} endISO={endISO} />
@@ -63,7 +46,7 @@ export default function SiteDashboard() {
       )}
 
       {storageAssets.length > 0 && (
-        <div className="card" style={{ marginTop: 16 }}>
+        <div id="storage-assets" className="card" style={{ marginTop: 16, scrollMarginTop: '24px' }}>
           <h3>Storage charge/discharge and state (last 24h)</h3>
           {storageAssets.map(asset => (
             <StorageCharts key={asset.id} asset={asset} startISO={startISO} endISO={endISO} />
@@ -72,13 +55,13 @@ export default function SiteDashboard() {
       )}
 
       {network && (
-        <div className="card" style={{ marginTop: 16 }}>
+        <div id="network-consumption" className="card" style={{ marginTop: 16, scrollMarginTop: '24px' }}>
           <h3>Network consumption and forecast</h3>
           <NetworkCharts asset={network} startISO={startISO} endISO={endISO} />
         </div>
       )}
 
-      <div className="card" style={{ marginTop: 16 }}>
+      <div id="electricity-prices" className="card" style={{ marginTop: 16, scrollMarginTop: '24px' }}>
         <h3>Electricity prices (last 24h)</h3>
         <LineSeriesChart data={priceData} series={[{ name: 'Price', dataKey: 'price', color: '#22c55e' }]} yUnit="€" />
       </div>
