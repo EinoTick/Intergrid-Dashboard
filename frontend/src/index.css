@@ -46,12 +46,15 @@ body {
     flex:1 1 300px
 }
 .badge {
-    display:inline-block;
-    padding:2px 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding:4px 8px;
     border-radius:999px;
     background:#1f2937;
     color:var(--muted);
-    font-size:12px
+    font-size:12px;
+    line-height:1;
 }
 .button {
     background:var(--accent);
