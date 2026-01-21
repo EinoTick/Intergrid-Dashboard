@@ -30,6 +30,9 @@ export default function SiteDashboard() {
 
   return (
     <div className="container">
+      <div className="header" style={{ marginBottom: 24 }}>
+        <h2 style={{ margin: 0 }}>{siteDetail.site.name}</h2>
+      </div>
       <div id="assets-grid" className="grid" style={{ scrollMarginTop: '24px' }}>
         {siteDetail.assets.map((a: Asset) => (
           <AssetCard key={a.id} asset={a} />

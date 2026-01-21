@@ -28,7 +28,6 @@ export default function NavigationBar() {
   }, [])
 
   const isDashboard = location.pathname.startsWith('/site/')
-  const siteName = siteDetail?.site.name || 'Industrial Automation Dashboard'
 
   // Generate navigation links for dashboard sections
   const getDashboardLinks = () => {
@@ -94,9 +93,9 @@ export default function NavigationBar() {
       {/* Navigation bar */}
       <nav className={`nav-bar ${isExpanded ? 'expanded' : 'collapsed'}`}>
         <div className="nav-content">
-          {/* Company name / Site name */}
+          {/* Company name */}
           <div className="nav-header">
-            <h2 style={{ margin: 0, fontSize: '18px' }}>{siteName}</h2>
+            <h2 style={{ margin: 0, fontSize: '18px' }}>Intergrid</h2>
           </div>
 
           {/* Site selector */}
