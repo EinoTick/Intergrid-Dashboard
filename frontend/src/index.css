@@ -80,7 +80,9 @@ body {
 }
 .grid {
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:16px;
+    align-items:start
 }
 .alert {
     padding:8px 12px;
