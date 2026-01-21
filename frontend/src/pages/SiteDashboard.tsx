@@ -65,6 +65,10 @@ export default function SiteDashboard() {
         <h3>Electricity prices (last 24h)</h3>
         <LineSeriesChart data={priceData} series={[{ name: 'Price', dataKey: 'price', color: '#22c55e' }]} yUnit="€" />
       </div>
+
+      <footer style={{ marginTop: 48, paddingBottom: 48, textAlign: 'center' }}>
+        <div className="small">© {new Date().getFullYear()} Industrial Automation Dashboard. All rights reserved.</div>
+      </footer>
     </div>
   )
 }
