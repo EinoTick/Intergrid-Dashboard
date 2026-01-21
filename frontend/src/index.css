@@ -84,6 +84,9 @@ body {
     gap:16px;
     align-items:start
 }
+.grid .card {
+    min-height:200px
+}
 .alert {
     padding:8px 12px;
     border-radius:8px
