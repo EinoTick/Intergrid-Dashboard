@@ -105,6 +105,22 @@ export default function NavigationBar() {
             </h2>
           </div>
 
+          {/* Profile link */}
+          <div className="nav-section">
+            <button
+              className="nav-link"
+              onClick={() => {
+                navigate('/profile')
+                if (isMobile) {
+                  setIsExpanded(false)
+                }
+              }}
+              style={{ width: '100%', textAlign: 'left' }}
+            >
+              Profile
+            </button>
+          </div>
+
           {/* Site selector */}
           <div className="nav-section">
             <div className="label">Select a site</div>

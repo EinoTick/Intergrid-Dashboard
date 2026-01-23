@@ -68,13 +68,17 @@ body {
     color:var(--text);
     border:1px solid #334155
 }
-.input, .select {
+.input, .select, textarea {
     width:100%;
     padding:8px;
     background:#0b1220;
     border:1px solid #1f2937;
     color:var(--text);
-    border-radius:8px
+    border-radius:8px;
+    font-family:inherit
+}
+textarea {
+    resize:vertical
 }
 .label {
     font-size:12px;
