@@ -95,7 +95,14 @@ export default function NavigationBar() {
         <div className="nav-content">
           {/* Company name */}
           <div className="nav-header">
-            <h2 style={{ margin: 0, fontSize: '18px' }}>Intergrid</h2>
+            <h2 
+              style={{ margin: 0, fontSize: '18px', cursor: 'pointer', transition: 'color 0.2s' }}
+              onClick={() => navigate('/')}
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text)'}
+            >
+              Intergrid
+            </h2>
           </div>
 
           {/* Site selector */}
@@ -107,12 +114,10 @@ export default function NavigationBar() {
               onChange={(e) => {
                 if (e.target.value) {
                   navigate(`/site/${e.target.value}`)
-                } else {
-                  navigate('/')
                 }
               }}
             >
-              <option value="">Home</option>
+              <option value="" disabled>Choose a site...</option>
               {sites?.map(s => (
                 <option key={s.id} value={s.id}>{s.name}</option>
               ))}
