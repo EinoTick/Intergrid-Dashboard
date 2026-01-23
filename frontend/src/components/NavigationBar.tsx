@@ -119,6 +119,18 @@ export default function NavigationBar() {
             >
               Profile
             </button>
+            <button
+              className="nav-link"
+              onClick={() => {
+                navigate('/change-password')
+                if (isMobile) {
+                  setIsExpanded(false)
+                }
+              }}
+              style={{ width: '100%', textAlign: 'left' }}
+            >
+              Change Password
+            </button>
           </div>
 
           {/* Site selector */}
