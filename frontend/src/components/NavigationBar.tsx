@@ -127,7 +127,7 @@ export default function NavigationBar() {
           {/* Dashboard navigation links */}
           {isDashboard && dashboardLinks.length > 0 && (
             <div className="nav-section">
-              <div className="label">Navigation</div>
+              <div className="label">Assets</div>
               <div className="nav-links">
                 {dashboardLinks.map(link => (
                   <button
