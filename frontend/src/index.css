@@ -147,6 +147,30 @@ textarea {
     border-bottom: 1px solid #1f2937;
 }
 
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--text);
+    text-decoration: none;
+}
+
+.nav-brand:hover .nav-brand-name {
+    color: var(--accent);
+}
+
+.nav-logo {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.nav-brand-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
 .nav-section {
     display: flex;
     flex-direction: column;

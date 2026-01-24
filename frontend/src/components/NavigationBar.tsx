@@ -93,16 +93,27 @@ export default function NavigationBar() {
       {/* Navigation bar */}
       <nav className={`nav-bar ${isExpanded ? 'expanded' : 'collapsed'}`}>
         <div className="nav-content">
-          {/* Company name */}
+          {/* Brand */}
           <div className="nav-header">
-            <h2 
-              style={{ margin: 0, fontSize: '18px', cursor: 'pointer', transition: 'color 0.2s' }}
+            <div
+              className="nav-brand"
               onClick={() => navigate('/')}
-              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent)'}
-              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text)'}
             >
-              Intergrid
-            </h2>
+              <svg
+                className="nav-logo"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+              >
+                <rect x="2" y="2" width="28" height="28" rx="6" fill="#0b1220" stroke="#22c55e" strokeWidth="2" />
+                <path d="M9 10H23" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" />
+                <path d="M9 16H23" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" opacity="0.8" />
+                <path d="M9 22H18" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" opacity="0.6" />
+                <circle cx="11" cy="10" r="1.5" fill="#22c55e" />
+                <circle cx="16" cy="16" r="1.5" fill="#22c55e" opacity="0.8" />
+                <circle cx="20" cy="22" r="1.5" fill="#22c55e" opacity="0.6" />
+              </svg>
+              <span className="nav-brand-name">Intergrid</span>
+            </div>
           </div>
 
           {/* Profile link */}
