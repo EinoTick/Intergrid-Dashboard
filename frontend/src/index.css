@@ -239,6 +239,9 @@ textarea {
 .main-content {
     margin-left: 280px;
     transition: margin-left 0.3s ease;
+    background-image:
+            linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.6)),
+            url('./assets/images/tactile_noise.png');
 }
 
 /* Mobile styles */
