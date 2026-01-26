@@ -116,7 +116,7 @@ export default function NavigationBar() {
             </div>
           </div>
 
-          {/* Profile link */}
+          {/* Profile & settings links */}
           <div className="nav-section">
             <button
               className="nav-link"
@@ -141,6 +141,18 @@ export default function NavigationBar() {
               style={{ width: '100%', textAlign: 'left' }}
             >
               Change Password
+            </button>
+            <button
+              className="nav-link"
+              onClick={() => {
+                navigate('/create-asset')
+                if (isMobile) {
+                  setIsExpanded(false)
+                }
+              }}
+              style={{ width: '100%', textAlign: 'left' }}
+            >
+              Create Asset
             </button>
           </div>
 
